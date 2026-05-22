@@ -2,10 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 48 100% 97%;
+    --card: 0 0% 5%;
+    --card-foreground: 48 100% 96%;
+    --primary: 51 100% 50%;
+    --primary-foreground: 0 0% 3%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 44 18% 68%;
+    --accent: 47 97% 55%;
+    --accent-foreground: 0 0% 3%;
+    --border: 45 76% 22%;
+    --input: 45 76% 22%;
+    --ring: 51 100% 50%;
+    --radius: 1.25rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+  }
+
+  ::selection {
+    background: rgba(255, 215, 0, 0.35);
+    color: #fff7c2;
+  }
 }
 
-.gold {
-  color: #FFD700;
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, #fff9cc 0%, #ffd700 42%, #b88900 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gold-border {
+    position: relative;
+  }
+
+  .gold-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 215, 0, 0.75),
+      rgba(255, 215, 0, 0.08),
+      rgba(255, 215, 0, 0.45)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
